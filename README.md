@@ -2,7 +2,7 @@
 
 Repository ini adalah repository yang berisi model User dan Post, dimana user dapat melakukan banyak post.
 
-# Method yang ada pada post
+## Method yang ada pada post
 
 | Endpoint        | Fungsi           |
 | ------------- |-------------|
@@ -14,7 +14,7 @@ Repository ini adalah repository yang berisi model User dan Post, dimana user da
 | GET /posts/{id}/exists  | Mengecek apakah post dengan {id} tertentu ada di database |
 | GET /posts/count | Menghitung jumlah semua posts |
 
-# Method yang ada pada user
+## Method yang ada pada user
 
 | Endpoint        | Fungsi           |
 | ------------- |-------------|
@@ -32,5 +32,4 @@ Repository ini adalah repository yang berisi model User dan Post, dimana user da
 | DELETE /sosmedusers/{id}/posts/{fk} | Menghapus post dengan id = {fk} dari user dengan {id} tertentu |
 | GET /sosmedusers/{id}/posts/count | Menghitung jumlah post dari user dengan {id} tertentu |
 | GET /sosmedusers/count | Menghitung jumlah semua user |
-
 
