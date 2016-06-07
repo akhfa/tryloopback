@@ -7,12 +7,6 @@ Repository ini adalah repository yang berisi model User dan Post, dimana user da
 | Endpoint        | Fungsi           |
 | ------------- |-------------|
 | GET /posts      | Melakukan list semua post yang ada |
-| POST /posts     | Membuat post baru |
-| GET /posts/{id} | Mendapatkan post dengan {id} tertentu |
-| PUT /posts/{id}      | Melakukan update suatu post berdasarkan {id} post |
-| DELETE /posts/{id}    | Menghapus post dengan {id} tertentu |
-| GET /posts/{id}/exists  | Mengecek apakah post dengan {id} tertentu ada di database |
-| GET /posts/count | Menghitung jumlah semua posts |
 
 ## Method yang ada pada user
 
@@ -33,3 +27,187 @@ Repository ini adalah repository yang berisi model User dan Post, dimana user da
 | GET /sosmedusers/{id}/posts/count | Menghitung jumlah post dari user dengan {id} tertentu |
 | GET /sosmedusers/count | Menghitung jumlah semua user |
 
+## Testcase
+
+### POST /sosmedusers
+#### Request
+```json
+{
+  "email": "akhfa@a.com",
+  "password": "akhfa",
+  "name": "akhfa",
+  "address": "jalan X kel. Y",
+  "telp": "08123456789"
+}
+```
+#### Response
+```json
+{
+  "email": "akhfa@a.com",
+  "password": "akhfa",
+  "name": "akhfa",
+  "address": "jalan X kel. Y",
+  "telp": "08123456789",
+  "id": 1
+}
+```
+
+### GET /sosmedusers
+#### response
+```json
+[
+  {
+    "email": "akhfa@a.com",
+    "password": "akhfa",
+    "name": "akhfa",
+    "address": "jalan X kel. Y",
+    "telp": "08123456789",
+    "id": 1
+  }
+]
+```
+
+### GET /sosmedusers/1
+#### response
+```json
+{
+  "email": "akhfa@a.com",
+  "password": "akhfa",
+  "name": "akhfa",
+  "address": "jalan X kel. Y",
+  "telp": "08123456789",
+  "id": 1
+}
+```
+
+### PUT /sosmedusers/1
+#### request
+```json
+{
+  "email": "akhfa@a.com",
+  "password": "akhfa",
+  "name": "akhfaBaru",
+  "address": "jalan X kel. Y",
+  "telp": "08123456789"
+}
+```
+#### response
+```json
+{
+  "email": "akhfa@a.com",
+  "password": "akhfa",
+  "name": "akhfaBaru",
+  "address": "jalan X kel. Y",
+  "telp": "08123456789",
+  "id": 1
+}
+```
+
+### GET /sosmedusers/1/exists
+#### response
+```json
+{
+  "exists": true
+}
+```
+
+### GET /sosmedusers/2/exists
+#### response
+```json
+{
+  "exists": false
+}
+```
+
+### GET /sosmedusers/count
+#### response
+```json
+{
+  "count": 1
+}
+```
+
+### POST /sosmeduser/1/posts
+#### request
+```json
+{
+  "date": "2016-06-07",
+  "text": "ini isi dari posting"
+}
+```
+#### response
+```json
+{
+  "date": "2016-06-07T00:00:00.000Z",
+  "text": "ini isi dari posting",
+  "id": 2,
+  "sosmeduserId": 1
+}
+```
+
+### GET /sosmedusers/1/posts/2 `1 adalah id user dan 2 adalah id post`
+#### response
+```json
+{
+  "date": "2016-06-07T00:00:00.000Z",
+  "text": "ini isi dari posting",
+  "id": 2,
+  "sosmeduserId": 1
+}
+```
+
+### PUT /sosmedusers/1/posts/2
+#### request
+```json
+{
+  "date": "2016-06-07",
+  "text": "ini isi dari posting yang baru"
+}
+```
+#### response
+```json
+{
+  "date": "2016-06-07T00:00:00.000Z",
+  "text": "ini isi dari posting yang baru",
+  "id": 2,
+  "sosmeduserId": 1
+}
+```
+
+### GET /sosmedusers/1/posts/count
+#### response
+```json
+{
+  "count": 2
+}
+```
+
+### GET /posts
+#### response
+```json
+[
+  {
+    "date": "2016-06-07T00:00:00.000Z",
+    "text": "string",
+    "id": 1,
+    "sosmeduserId": 1
+  },
+  {
+    "date": "2016-06-07T00:00:00.000Z",
+    "text": "ini isi dari posting yang baru",
+    "id": 2,
+    "sosmeduserId": 1
+  }
+]
+```
+
+### GET /posts/2
+#### response
+```json
+{
+  "date": "2016-06-07T00:00:00.000Z",
+  "text": "ini isi dari posting yang baru",
+  "id": 2,
+  "sosmeduserId": 1
+}
+```
